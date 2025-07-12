@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumin Script | Документация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --code-bg: #0f172a;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background-color: var(--light);
+        }
+        
+        @supports (font-variation-settings: normal) {
+            body { font-family: 'Inter var', sans-serif; }
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--dark);
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { 
+            font-size: 2.5rem;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+        
+        h3 { font-size: 1.4rem; }
+        h4 { font-size: 1.2rem; }
+        
+        p {
+            margin-bottom: 1.25rem;
+            color: #334155;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background-color: rgba(99, 102, 241, 0.1);
+            border-radius: 4px;
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+            color: var(--primary-dark);
+        }
+        
+        pre {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 1.25rem;
+            overflow: auto;
+            line-height: 1.5;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            color: #e2e8f0;
+        }
+        
+        .header {
+            margin-bottom: 3rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.6em;
+            font-size: 0.75em;
+            font-weight: 600;
+            line-height: 1;
+            color: white;
+            background-color: var(--primary);
+            border-radius: 9999px;
+            vertical-align: middle;
+        }
+        
+        .notice {
+            background-color: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 4px 4px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .notice-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Lumin $cript <span class="badge">@latest</span></h1>
+        <p>Язык программирования транслируемый в JavaScript.</p>
+    </div>
+
+    <h2>✨ Особенности нашего синтаксиса</h2>
+    <ul>
+        <li>🎁 Минималистичный дизайн</li>
+        <li>🛠 Простое использование</li>
+        <li>📝 Подробная документация</li>
+    </ul>
+
+    <div class="notice">
+        <div class="notice-title">ℹ️ Важно</div>
+        <p>Текущая версия находится в активной разработке. Актуальные новости можете посмотреть на этой же странице.</p>
+    </div>
+
+    <h2>⚡ Быстрый старт</h2>
+    <p>Установите Lumin Script через NPM.js:</p>
+    <pre><code class="language-bash">npm install lumin-script -g</code></pre>
+
+    <p>Запуск вашего кода:</p>
+    <pre><code class="language-bash">lc start index.js</code></pre>
+    
+    <p>Компиляция вашего кода:</p>
+    <pre><code class="language-bash">lc compile index.js</code></pre>
+
+    <h3>Минимальный пример для использования <span class="badge">index.js</span></h3>
+    <pre><code class="language-javascript">let x = num (100)
+
+    def TestCode (arg) {
+    	if arg > 100 {
+    	    return true
+    	} else return false
+    }
+    
+    print TestCode (x)
+</code></pre>
+
+<h3>Компиляция файла <span class="badge">index.js</span> в JavaScript</h3>
+    <pre><code class="language-javascript">let x = Number(100);
+     function TestCode (arg) {
+     if (arg > 100) {
+     return true
+     } else { return false }
+     }
+     
+console.log(TestCode (x));
+</code></pre>
+
+    <h2>🔗 Полезные ссылки</h2>
+    <ul>
+        <li><a href="https://github.com/ostronix/lumin-script" target="_blank">GitHub репозиторий</a></li>
+        <li><a href="https://npmjs.com/package/lumin-script" target="_blank">NPM</a></li>
+        <li><a href="https://ostronix.github.io/lumin-script" target="_blank">Компилятор прямо в браузере</a></li>
+    </ul>
+
+    <h2>📜 Лицензия</h2>
+    <p><span class="badge">Lumin Script </span> распространяется под лицензией MIT.</p>
+</body>
+</html>
