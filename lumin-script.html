@@ -9,6 +9,7 @@
         :root {
             --primary: #6c5ce7;
             --primary-dark: #5649c0;
+            --secondary: #00cec9;
             --dark: #2d3436;
             --light: #f5f6fa;
         }
@@ -55,19 +56,32 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         
-        .editor-header {
+        .output-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .editor-header, .output-header {
             background: var(--primary);
             color: white;
             padding: 0.8rem 1.5rem;
             font-weight: 600;
         }
         
-        textarea {
+        .output-header {
+            background: var(--dark);
+        }
+        
+        textarea, .output {
             width: 100%;
-            height: 400px;
+            height: 200px;
             font-family: 'Consolas', monospace;
             padding: 1.5rem;
             border: none;
@@ -79,6 +93,12 @@
             background: white;
         }
         
+        .output {
+            background: #f8f9fa;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+        
         textarea::placeholder {
             color: #aaa;
         }
@@ -86,6 +106,7 @@
         .action-buttons {
             display: flex;
             justify-content: center;
+            gap: 20px;
             margin-bottom: 2rem;
         }
         
@@ -109,6 +130,18 @@
             background-color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #00b5b0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 206, 201, 0.4);
         }
         
         .links {
@@ -163,6 +196,14 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -176,17 +217,31 @@
             <div class="editor-header">
                 <span>editor.lumin</span>
             </div>
-            <textarea id="html-code" placeholder="def name (a) {
-            return a
-        }"></textarea>
+            <textarea id="input-code" placeholder="def name (a) {
+    return a
+}"></textarea>
+        </div>
+        
+        <div class="output-container">
+            <div class="output-header">
+                <span>output.js</span>
+            </div>
+            <textarea id="output-code" placeholder="function name (a) {
+return a
+}"></textarea>
         </div>
         
         <div class="action-buttons">
-            <button id="compile-btn" class="btn btn-primary">Скомпилировать</button>
+            <button id="compile-btn" class="btn btn-primary">
+                <i class="fas fa-arrow-down"></i> Компилировать в JS
+            </button>
+            <button id="decompile-btn" class="btn btn-secondary">
+                <i class="fas fa-arrow-up"></i> Декомпилировать в LUMIN
+            </button>
         </div>
         
         <div class="links">
-            <a href="https://github.com/ostronix/lumin-script" target="_blank" class="link-btn github">
+            <a href="https://github.com/yourusername/lumin-script" target="_blank" class="link-btn github">
                 <i class="fab fa-github link-icon"></i>
                 GitHub
             </a>
@@ -201,15 +256,24 @@
         <p>LUMIN.js by dev.ostrovsky &copy; 2025</p>
     </footer>
     
-    <script src="https://unpkg.com/lumin-script@1.1.0/src/web-index.js"></script>
-
-    <script>
+    <script src="https://unpkg.com/lumin-script@1.4.0/src/web-index.js"></script>
+    <script src="https://unpkg.com/lumin-script@1.4.0/src/web-decompile-index.js"></script>
+    
+<script>
         document.getElementById('compile-btn').addEventListener('click', function() {
-            const htmlCode = document.getElementById('html-code').value;
+            const inputCode = document.getElementById('input-code').value;
+            if (!inputCode.trim()) return alert("Нет кода для компиляции");
             
-            if (!htmlCode) return alert("Нет кода для компиляции");
+            const jsCode = compile(inputCode);
+            document.getElementById('output-code').value = jsCode;
+        });
+
+        document.getElementById('decompile-btn').addEventListener('click', function() {
+            const outputCode = document.getElementById('output-code').value;
+            if (!outputCode.trim()) return alert("Нет кода для декомпиляции");
             
-            alert("Compile:\n\n" + compile(htmlCode));
+            const luminCode = decompile(outputCode);
+            document.getElementById('input-code').value = luminCode;
         });
     </script>
 </body>
